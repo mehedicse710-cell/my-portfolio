@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Mehedi Hassan | Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg: #050816;
+      --bg-alt: #0f172a;
+      --card: #111827;
+      --accent: #22c55e;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --border: #1f2937;
+      --radius-xl: 1.25rem;
+      --transition: 0.2s ease;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body {
+      font-family:"Poppins",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      background: radial-gradient(circle at top,#1d2438 0,#050816 45%,#020617 100%);
+      color:var(--text);
+      min-height:100vh;
+    }
+    a { color:inherit; text-decoration:none; }
+    ul { list-style:none; }
+    img { max-width:100%; display:block; }
+
+    .container { width:min(1120px,100% - 2rem); margin:0 auto; }
+
+    header {
+      position:sticky; top:0; z-index:50;
+      backdrop-filter:blur(14px);
+      background:linear-gradient(to bottom,rgba(15,23,42,.9),rgba(15,23,42,.7),transparent);
+      border-bottom:1px solid rgba(31,41,55,.7);
+    }
+    .nav {
+      display:flex; align-items:center; justify-content:space-between;
+      padding:.9rem 0;
+    }
+    .logo { display:flex; align-items:center; gap:.5rem; font-weight:600; }
+    .logo-badge {
+      width:32px; height:32px; border-radius:999px;
+      background:radial-gradient(circle at 30% 20%,#4ade80,#22c55e);
+      display:grid; place-items:center;
+      color:#020617; font-weight:800; font-size:.9rem;
+      box-shadow:0 0 18px rgba(34,197,94,.7);
+    }
+    .nav-links { display:flex; align-items:center; gap:1.25rem; font-size:.9rem; }
+    .nav-links a {
+      color:var(--muted);
+      padding-bottom:.2rem;
+      border-bottom:2px solid transparent;
+      transition:color var(--transition),border-color var(--transition),transform var(--transition);
+    }
+    .nav-links a:hover { color:var(--text); border-color:var(--accent); transform:translateY(-1px); }
+    .nav-links a.active { color:var(--accent); border-color:var(--accent); }
+    .nav-btn {
+      padding:.4rem .9rem; border-radius:999px;
+      border:1px solid rgba(148,163,184,.4);
+      font-size:.8rem; color:var(--muted);
+      display:flex; align-items:center; gap:.4rem; cursor:pointer;
+      background:radial-gradient(circle at top left,#1e293b,#020617);
+      transition:border var(--transition),transform var(--transition),box-shadow var(--transition),background var(--transition),color var(--transition);
+    }
+    .nav-btn:hover {
+      border-color:var(--accent); color:var(--accent);
+      transform:translateY(-1px);
+      box-shadow:0 10px 35px rgba(15,23,42,.8);
+      background:radial-gradient(circle at top left,#0b1120,#020617);
+    }
+    .nav-toggle { display:none; cursor:pointer; }
+    .nav-toggle span {
+      width:21px; height:2px; border-radius:999px;
+      display:block; background:var(--muted);
+      transition:var(--transition);
+    }
+    .nav-toggle span:nth-child(2) { margin:4px 0; }
+
+    .hero { padding:3.5rem 0 3rem; }
+    .hero-grid {
+      display:grid;
+      grid-template-columns:1.4fr 1fr;
+      gap:2.5rem; align-items:center;
+    }
+    .eyebrow {
+      font-size:.8rem; text-transform:uppercase;
+      letter-spacing:.12em; color:var(--accent);
+      display:inline-flex; align-items:center; gap:.5rem;
+    }
+    .eyebrow-dot {
+      width:7px; height:7px; border-radius:999px;
+      background:var(--accent);
+      box-shadow:0 0 16px rgba(34,197,94,.8);
+    }
+    .hero-title {
+      font-size:clamp(2.2rem,5vw,3rem);
+      line-height:1.15; margin:.75rem 0 .75rem;
+    }
+    .hero-title span {
+      background:linear-gradient(to right,#22c55e,#a3e635);
+      -webkit-background-clip:text;
+      color:transparent;
+    }
+    .hero-subtitle { font-size:.95rem; color:var(--muted); max-width:480px; }
+
+    .hero-actions { display:flex; flex-wrap:wrap; gap:.8rem; margin-top:1.8rem; }
+    .btn-primary,.btn-ghost {
+      border-radius:999px; padding:.7rem 1.4rem;
+      font-size:.9rem; border:1px solid transparent;
+      cursor:pointer; display:inline-flex; align-items:center; gap:.4rem;
+      transition:background var(--transition),transform var(--transition),
+        box-shadow var(--transition),border var(--transition),color var(--transition);
+    }
+    .btn-primary {
+      background:linear-gradient(135deg,#22c55e,#4ade80);
+      color:#021013; font-weight:600;
+      box-shadow:0 14px 35px rgba(34,197,94,.45);
+    }
+    .btn-primary:hover {
+      transform:translateY(-1px);
+      box-shadow:0 22px 50px rgba(34,197,94,.55);
+    }
+    .btn-ghost {
+      border-color:rgba(148,163,184,.5);
+      color:var(--muted);
+      background:rgba(15,23,42,.7);
+    }
+    .btn-ghost:hover {
+      border-color:var(--accent); color:var(--accent);
+      transform:translateY(-1px);
+      box-shadow:0 10px 30px rgba(15,23,42,1);
+    }
+
+    .hero-tags { margin-top:1.5rem; display:flex; flex-wrap:wrap; gap:.5rem; }
+    .tag {
+      font-size:.75rem; padding:.25rem .55rem;
+      border-radius:999px;
+      border:1px solid rgba(148,163,184,.5);
+      color:var(--muted); background:rgba(15,23,42,.9);
+    }
+
+    .hero-card {
+      background:radial-gradient(circle at top,#111827,#020617);
+      border:1px solid rgba(31,41,55,.92);
+      border-radius:1.5rem; padding:1.4rem;
+      box-shadow:0 18px 45px rgba(15,23,42,.8);
+      position:relative; overflow:hidden;
+    }
+    .hero-card-inner { position:relative; z-index:1; }
+    .avatar {
+      width:90px; height:90px; border-radius:1.2rem;
+      background:linear-gradient(145deg,#22c55e,#a3e635);
+      display:grid; place-items:center;
+      color:#020617; font-size:2.2rem; font-weight:700;
+      box-shadow:0 18px 45px rgba(22,163,74,.55);
+      margin-bottom:1rem;
+    }
+    .hero-card h3 { font-size:1.1rem; margin-bottom:.15rem; }
+    .hero-card p.role { font-size:.85rem; color:var(--accent); margin-bottom:.7rem; }
+    .hero-card p.bio { font-size:.85rem; color:var(--muted); margin-bottom:.9rem; }
+
+    .pill-row { display:flex; flex-wrap:wrap; gap:.4rem; margin-bottom:1.1rem; }
+    .pill {
+      font-size:.7rem; padding:.28rem .55rem;
+      border-radius:999px;
+      background:rgba(15,23,42,.95);
+      border:1px solid rgba(31,41,55,.95);
+    }
+    .pill strong { color:var(--accent); }
+
+    .status {
+      display:flex; align-items:center; justify-content:space-between;
+      gap:.5rem; font-size:.8rem;
+    }
+    .status-chip {
+      display:inline-flex; align-items:center; gap:.3rem;
+      padding:.25rem .55rem; border-radius:999px;
+      background:rgba(22,163,74,.12);
+      border:1px solid rgba(34,197,94,.6);
+      color:var(--accent);
+    }
+    .status-dot {
+      width:6px; height:6px; border-radius:999px;
+      background:var(--accent);
+      box-shadow:0 0 13px rgba(74,222,128,.9);
+    }
+
+    section { padding:2.5rem 0; }
+    section:nth-of-type(odd) {
+      background:linear-gradient(to bottom,rgba(15,23,42,.9),rgba(15,23,42,.95));
+    }
+    section:nth-of-type(even) { background:#020617; }
+
+    .section-header {
+      margin-bottom:1.5rem;
+      display:flex; justify-content:space-between; align-items:flex-end; gap:1rem;
+    }
+    .section-heading { font-size:1.4rem; }
+    .section-subtitle { font-size:.85rem; color:var(--muted); max-width:380px; }
+
+    .about-grid {
+      display:grid; grid-template-columns:1.5fr 1fr; gap:2rem;
+    }
+    .about-text { font-size:.9rem; color:var(--muted); line-height:1.7; }
+    .about-highlights {
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:.9rem;
+    }
+    .stat-card {
+      background:#020617; border-radius:var(--radius-xl);
+      border:1px solid var(--border);
+      padding:.8rem .9rem; text-align:left;
+      box-shadow:0 10px 30px rgba(15,23,42,.9);
+      font-size:.78rem; color:var(--muted);
+    }
+
+    .skills-grid,.projects-grid {
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:1rem;
+    }
+    .skill-card,.project-card {
+      background:var(--card);
+      border-radius:1.1rem;
+      border:1px solid var(--border);
+      padding:.9rem;
+      box-shadow:0 14px 40px rgba(15,23,42,.95);
+      font-size:.82rem;
+    }
+    .skill-card h3 { font-size:.95rem; margin-bottom:.4rem; }
+    .skill-tags {
+      display:flex; flex-wrap:wrap; gap:.35rem; margin-top:.4rem;
+    }
+    .skill-tag {
+      font-size:.7rem; padding:.2rem .45rem;
+      border-radius:999px;
+      background:#020617; border:1px solid #1f2937;
+      color:var(--muted);
+    }
+
+    .project-chip-row {
+      display:flex; justify-content:space-between; gap:.5rem;
+      align-items:center; font-size:.72rem; color:var(--muted);
+    }
+    .project-chip {
+      padding:.15rem .5rem; border-radius:999px;
+      background:#020617; border:1px solid #1f2937;
+    }
+    .project-title { font-size:.98rem; font-weight:500; margin:.25rem 0; }
+    .project-desc { font-size:.8rem; color:var(--muted); }
+
+    .project-links {
+      margin-top:.5rem; display:flex;
+      justify-content:space-between; align-items:center; gap:.5rem;
+      font-size:.8rem;
+    }
+    .project-links a {
+      display:inline-flex; align-items:center; gap:.25rem;
+      color:var(--muted); padding:.25rem .55rem;
+      border-radius:999px; border:1px solid transparent;
+      transition:var(--transition);
+    }
+    .project-links a:hover {
+      color:var(--accent);
+      border-color:rgba(34,197,94,.5);
+      background:#020617;
+    }
+
+    footer {
+      padding:1.2rem 0 1.4rem;
+      text-align:center; font-size:.78rem; color:var(--muted);
+      background:#020617; border-top:1px solid var(--border);
+    }
+    footer a { color:var(--accent); }
+
+    @media (max-width:900px){
+      .hero-grid,.about-grid { grid-template-columns:1fr; }
+      .hero { padding-top:2.5rem; }
+    }
+    @media (max-width:768px){
+      .nav-links {
+        position:fixed; inset:54px 0 auto 0;
+        background:rgba(15,23,42,.98);
+        padding:.8rem 1rem .9rem; border-bottom:1px solid rgba(31,41,55,.9);
+        transform-origin:top; transform:scaleY(0);
+        opacity:0; pointer-events:none;
+        flex-direction:column; align-items:flex-start; gap:.8rem;
+      }
+      .nav-links.open { transform:scaleY(1); opacity:1; pointer-events:auto; }
+      .nav-btn { display:none; }
+      .nav-toggle { display:grid; }
+      .skills-grid,.projects-grid,.about-highlights {
+        grid-template-columns:repeat(2,minmax(0,1fr));
+      }
+    }
+    @media (max-width:540px){
+      .skills-grid,.projects-grid,.about-highlights {
+        grid-template-columns:1fr;
+      }
+      .hero-actions { flex-direction:column; align-items:stretch; }
+      .btn-primary,.btn-ghost { justify-content:center; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container nav">
+      <div class="logo">
+        <div class="logo-badge" id="logo-initial">M</div>
+        <div>
+          <div style="font-size:.9rem;" id="logo-name">Mehedi Hassan</div>
+          <div style="font-size:.7rem;color:var(--muted);" id="logo-role">
+            Developer & Cyber Security Enthusiast
+          </div>
+        </div>
+      </div>
+
+      <nav>
+        <button class="nav-toggle" aria-label="Toggle navigation">
+          <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-links">
+          <li><a href="#hero" class="active">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+        </ul>
+      </nav>
+
+      <a href="#projects" class="nav-btn">
+        <span>View work</span><span>↗</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section id="hero" class="hero">
+    <div class="container hero-grid">
+      <div>
+        <div class="eyebrow">
+          <span class="eyebrow-dot"></span>
+          <span>Portfolio • 2025</span>
+        </div>
+
+        <h1 class="hero-title">
+          Hi, I’m <span id="hero-name">Mehedi Hassan</span><br />
+          <span id="hero-role-text">I build things for the web.</span>
+        </h1>
+
+        <p class="hero-subtitle" id="hero-tagline">
+          Loading intro...
+        </p>
+
+        <div class="hero-actions">
+          <a href="#projects" class="btn-primary">View Projects <span>↓</span></a>
+          <a href="#skills" class="btn-ghost">View Skills</a>
+        </div>
+
+        <div class="hero-tags" id="hero-tags">
+          <!-- Filled dynamically -->
+        </div>
+      </div>
+
+      <aside class="hero-card">
+        <div class="hero-card-inner">
+          <div class="avatar" id="avatar-initial">M</div>
+          <h3 id="card-name">Mehedi Hassan</h3>
+          <p class="role" id="card-role">Web Developer & Security Enthusiast</p>
+          <p class="bio" id="card-bio">
+            Loading bio...
+          </p>
+
+          <div class="pill-row">
+            <div class="pill"><strong>From:</strong> <span id="pill-location">Bangladesh</span></div>
+            <div class="pill"><strong>Focus:</strong> <span id="pill-focus">Web & CTF</span></div>
+            <div class="pill"><strong>Level:</strong> <span id="pill-level">Beginner+</span></div>
+          </div>
+
+          <div class="status">
+            <div class="status-chip">
+              <span class="status-dot"></span>
+              <span id="pill-status">Available for small projects</span>
+            </div>
+            <span style="font-size:.75rem;color:var(--muted);" id="pill-update">
+              Last update: 2025
+            </span>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <h2 class="section-heading">About Me</h2>
+        </div>
+        <p class="section-subtitle">
+          নিচের লেখা গুলো data/about.json থেকে আসবে। GitHub এ ওটাই change করলেই site update হবে।
+        </p>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-text" id="about-text">
+          <!-- paragraphs will be inserted here -->
+        </div>
+
+        <div class="about-highlights">
+          <div class="stat-card" id="stat-1">Loading…</div>
+          <div class="stat-card" id="stat-2">Loading…</div>
+          <div class="stat-card" id="stat-3">Loading…</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <h2 class="section-heading">Skills</h2>
+        </div>
+        <p class="section-subtitle">
+          সব skill data/skills.json থেকে আসবে।
+        </p>
+      </div>
+
+      <div class="skills-grid" id="skills-grid">
+        <!-- dynamic -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <h2 class="section-heading">Projects</h2>
+        </div>
+        <p class="section-subtitle">
+          Project list data/projects.json থেকে load হবে। নতুন project add করতে শুধু JSON এ add করলেই হবে।
+        </p>
+      </div>
+
+      <div class="projects-grid" id="projects-grid">
+        <!-- dynamic -->
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    © <span id="year"></span> <span id="footer-name">Mehedi Hassan</span>. Built with ❤️ and hosted on GitHub Pages.
+  </footer>
+
+  <!-- Main JS -->
+  <script src="main.js"></script>
+</body>
+</html>
